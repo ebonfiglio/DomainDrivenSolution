@@ -1,8 +1,36 @@
 ﻿@page "/"
 
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Primary</MudButton>
+<section style="display: flex; flex-direction: column; align-items: center;">
+    <div style="margin-bottom: 10px;">
+        <MudButton Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary" FullWidth="true">Buy a snack</MudButton>
+    </div>
+    <div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin-bottom: 5px;"><MudText Typo="Typo.button">Money Inserted:</MudText></div>
+        <div style="margin-bottom: 5px;">
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">1 Cent</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">10 Cent</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">25 Cent</MudButton>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">1 Dollar</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">5 Dollar</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Surface">20 Dollar</MudButton>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <MudButton Variant="Variant.Filled" Size="Size.Large" Color="Color.Error" FullWidth="true">Return Money</MudButton>
+        </div>
+    </div>
+    <div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin-bottom: 5px;"><MudText Typo="Typo.button">Money Inside:</MudText></div>
+        <div style="margin-bottom: 5px;">
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Warning">1 Cent</MudChip>
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Warning">10 Cent</MudChip>
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Warning">25 Cent</MudChip>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Success">1 Dollar</MudChip>
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Success">5 Dollar</MudChip>
+            <MudChip Variant="Variant.Filled" Size="Size.Small" Color="Color.Success">20 Dollar</MudChip>
+        </div>
+    </div>
+</section>
