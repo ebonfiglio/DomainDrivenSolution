@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenSolution.Logic"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenSolution.Tests", "DomainDrivenSolution.Tests\DomainDrivenSolution.Tests.csproj", "{76968254-78A8-4CC4-8D12-0B670C97F605}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenSolution.BlazorMaui", "DomainDrivenSolution.BlazorMaui\DomainDrivenSolution.BlazorMaui.csproj", "{B84909E0-5C30-4519-8138-764C7D549328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenSolution.BlazorMaui", "DomainDrivenSolution.BlazorMaui\DomainDrivenSolution.BlazorMaui.csproj", "{B84909E0-5C30-4519-8138-764C7D549328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

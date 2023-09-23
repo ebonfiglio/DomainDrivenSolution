@@ -1,4 +1,4 @@
-﻿using DomainDrivenSolution.BlazorMaui.Data;
+﻿using DomainDrivenSolution.BlazorMaui.Shared.Components;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 
@@ -22,8 +22,6 @@ namespace DomainDrivenSolution.BlazorMaui
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-
-            builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddMudServices();
             return builder.Build();
         }
