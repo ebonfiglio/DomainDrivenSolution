@@ -1,5 +1,6 @@
 ﻿using DomainDrivenSolution.Logic;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Storage;
 using System.Reflection;
 
 namespace DomainDrivenSolution.BlazorMaui
@@ -8,14 +9,7 @@ namespace DomainDrivenSolution.BlazorMaui
     {
         public App()
         {
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(basePath)
-                .AddJsonFile("appsettings.json");
-
-            var configuration = builder.Build();
-
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            string connectionString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dds");
 
             Initer.Init(connectionString);
             InitializeComponent();

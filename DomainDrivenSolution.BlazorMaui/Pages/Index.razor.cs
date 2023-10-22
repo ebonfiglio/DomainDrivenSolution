@@ -15,7 +15,7 @@ namespace DomainDrivenSolution.BlazorMaui.Pages
         {
             using (ISession session = SessionFactory.OpenSession())
             {
-                SnackMachine = session.Get<SnackMachine>(1L);
+                SnackMachine = session.Get<SnackMachine>(1L) ?? new();
             }
         }
     }

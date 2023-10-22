@@ -2,6 +2,7 @@
 using DomainDrivenSolution.Logic;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using NHibernate;
 using System.ComponentModel;
 
 namespace DomainDrivenSolution.BlazorMaui.Shared.Components
@@ -32,6 +33,12 @@ namespace DomainDrivenSolution.BlazorMaui.Shared.Components
         private void BuySnack()
         {
             SnackMachine.BuySnack();
+            using (ISession session = SessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                session.SaveOrUpdate(SnackMachine);
+                transaction.Commit();
+            }
             StateHasChanged();
             Message = "Snack bought!";
             Snackbar.Add(Message, Severity.Success);

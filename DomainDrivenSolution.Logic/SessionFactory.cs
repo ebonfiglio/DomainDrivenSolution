@@ -6,6 +6,7 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Helpers;
 using FluentNHibernate.Conventions.Instances;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
 
 namespace DomainDrivenSolution.Logic
 {
@@ -21,22 +22,25 @@ namespace DomainDrivenSolution.Logic
         public static void Init(string connectionString)
         {
             _factory = BuildSessionFactory(connectionString);
+           
         }
 
         private static ISessionFactory BuildSessionFactory(string connectionString)
         {
             FluentConfiguration configuration = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
-                .Mappings(m => m.FluentMappings
-                    .AddFromAssembly(Assembly.GetExecutingAssembly())
-                    .Conventions.Add(
-                        ForeignKey.EndsWith("ID"),
-                        ConventionBuilder.Property
-                            .When(criteria => criteria.Expect(x => x.Nullable, Is.Not.Set), x => x.Not.Nullable()))
-                    .Conventions.Add<TableNameConvention>()
-                    .Conventions.Add<HiLoConvention>()
-                );
-
+    .Database(SQLiteConfiguration.Standard
+        .ConnectionString($"Data Source={connectionString}")
+        .Driver<NHibernate.Driver.SQLite20Driver>())
+    .Mappings(m => m.FluentMappings
+        .AddFromAssembly(Assembly.GetExecutingAssembly())
+        .Conventions.Add(
+            ForeignKey.EndsWith("ID"),
+            ConventionBuilder.Property
+                .When(criteria => criteria.Expect(x => x.Nullable, Is.Not.Set), x => x.Not.Nullable()))
+        .Conventions.Add<TableNameConvention>()
+        .Conventions.Add<HiLoConvention>()
+    );
+            new SchemaExport(configuration.BuildConfiguration()).Create(false, true);
             return configuration.BuildSessionFactory();
         }
 
@@ -44,7 +48,7 @@ namespace DomainDrivenSolution.Logic
         {
             public void Apply(IClassInstance instance)
             {
-                instance.Table("[dbo].[" + instance.EntityType.Name + "]");
+                instance.Table(instance.EntityType.Name);
             }
         }
 
@@ -53,7 +57,7 @@ namespace DomainDrivenSolution.Logic
             public void Apply(IIdentityInstance instance)
             {
                 instance.Column(instance.EntityType.Name + "ID");
-                instance.GeneratedBy.HiLo("[dbo].[Ids]", "NextHigh", "9", "EntityName = '" + instance.EntityType.Name + "'");
+                instance.GeneratedBy.HiLo("Ids", "NextHigh", "9", "EntityName = '" + instance.EntityType.Name + "'");
             }
         }
     }
